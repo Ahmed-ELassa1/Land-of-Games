@@ -1,0 +1,76 @@
+
+.login-img{
+width: 100%;
+height: 100%;
+}
+.login-page{
+    margin-top: 30px;
+}
+.login-form{
+    background-color: #32383e;
+    padding: 30px 20px;
+    text-align: center;
+}
+form{
+    justify-content: space-between;
+}
+.login-image{
+    width: 110px;
+    margin-top: 30px;
+}
+ h2 {
+    color: #aaa;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+::placeholder{
+    text-transform: capitalize;
+    padding-left: 5px;
+
+}
+
+form input{
+    background-color: #fff;
+    border: 0 solid rgba(0,0,0,.6);
+    border-radius: 5px;
+    padding: 5px;
+    color: #000;
+}
+.create-account,
+.loading{
+    text-align: center;
+    background-color: #3a3f44;
+    border:.5px solid #22241d;
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+.privacy{
+    font-size: 14px;
+    text-align: center;
+    color: #6c757d;
+    text-transform: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+.privacy a{
+    color: inherit;
+   text-decoration: underline;
+}
+.membership{
+    font-size: 14px;
+    text-align: center;
+    margin-top: 5px;
+    text-transform: none;
+}
+ .login-link,
+ .forget-password{
+    text-align: center;
+    color:#4799eb;
+    text-transform: capitalize;
+}

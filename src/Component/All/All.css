@@ -1,0 +1,102 @@
+.all-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 25px;
+}
+.item{
+    overflow: hidden;
+    height: 100%;
+
+
+}
+.game:hover{
+    transform: scale(105%,105%);
+}
+
+.description{
+    padding: 0px;
+}
+.description p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0px 10px;
+    margin: 3px 0px;
+    color: #6c757d;
+    font-size: 16px;
+    width: 100%;
+}
+.game{
+    overflow: hidden;
+    transition: all .3s;        
+    cursor: pointer;
+
+}
+#browes{
+    color: #6c757d;
+    border-radius: 7px;
+    text-transform: capitalize;
+    padding: 5px 8px;
+    background-color: transparent;
+    border: 1px solid #6c757d;
+    transition: all .3s;
+}
+#browes:hover{
+    color: #fff;
+    background-color: #6c757d;
+}
+
+.item-text{
+    padding:15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #32383e;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.game-title h4{
+    color: #aaa;
+    display: flex;
+    margin-right: 5px;
+    padding-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.game-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.free-btn{
+    color: #fff;
+    background-color: #4799eb;
+    font-size: 14px;
+    padding: 2px 7px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-left: 10px;
+}
+.icons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items:center ;
+}
+.game-genre{
+    margin-top: 3px;
+    color: #32383e;
+    background-color: #6c757d;
+    font-size: 11px;
+    padding: 2px 15px;
+    height: 20px;
+    font-weight: 700;
+    text-transform: capitalize;
+    border-radius: 30px;
+}
+.platform{
+    color: #6c757d;
+    margin-left: 5px;
+}

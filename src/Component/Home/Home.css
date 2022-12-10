@@ -1,0 +1,58 @@
+
+.startup{
+    background-repeat: no-repeat;
+    background-color: #1c1e22; 
+    width: 100%;
+    background-position: top;
+    background-size: contain;
+    padding: 20px;
+    background-image: url("../../images/paladins.b44d33d6e7ee1ba8.png");
+}
+h1 {
+    text-align: center;
+}
+h1 span{
+    color: #49acff;
+}
+.description{
+    font-size: 18px;
+}
+#browes{
+    color: #6c757d;
+    border-radius: 7px;
+    text-transform: capitalize;
+    padding: 5px 8px;
+    background-color: transparent;
+    border: 1px solid #6c757d;
+    transition: all .3s;
+}
+#browes:hover{
+    color: #fff;
+    background-color: #6c757d;
+}
+.recommended-games h2{
+    text-transform: capitalize;
+    color: #aaa;
+    text-align: left;
+    font-size: 28px;
+    margin-top: 14px;
+}
+.item-text{
+    padding:15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #32383e;
+}
+.item-text h4{
+    color: #aaa;
+    display: flex;
+}
+.free-btn{
+    color: #fff;
+    background-color: #4799eb;
+    font-size: 14px;
+    padding: 5px 10px;
+    font-weight: 700;
+    text-transform: capitalize;
+}

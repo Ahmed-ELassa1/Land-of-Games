@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@1&display=swap');
+:root{
+    --main-color:rgba(255, 255, 255, .55);
+ }
+a,
+a:hover,
+Link,
+Link:hover{
+    text-decoration: none;
+color: var(--main-color);
+}
+
+body{
+    background-color: #272b30;
+    color: var(--main-color);
+    position: relative;
+}
+

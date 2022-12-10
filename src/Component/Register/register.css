@@ -1,0 +1,69 @@
+
+.register-img{
+width: 100%;
+height: 100%;
+}
+.register-page{
+    margin-top: 30px;
+}
+.register-form{
+    background-color: #32383e;
+    padding: 30px 20px;
+
+}
+form{
+    justify-content: space-between;
+}
+ h2 {
+    color: #aaa;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+::placeholder{
+    text-transform: capitalize;
+    padding-left: 5px;
+
+}
+
+form input{
+    background-color: #1c1e22;
+    border: 0 solid rgba(0,0,0,.6);
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
+}
+.create-account,
+.loading{
+    text-align: center;
+    background-color: #3a3f44;
+    border:.5px solid #22241d;
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+.privacy{
+    font-size: 14px;
+    text-align: center;
+    color: #6c757d;
+    text-transform: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+.privacy a{
+    color: inherit;
+   text-decoration: underline;
+}
+.membership{
+    font-size: 14px;
+    text-align: center;
+    margin-top: 5px;
+    text-transform: none;
+}
+ .login-link{
+    color:#4799eb;
+    text-transform: capitalize;
+}
