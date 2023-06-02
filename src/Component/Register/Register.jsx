@@ -5,6 +5,8 @@ import "./register.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import joi from "joi";
+import { auth } from "../Conf/Firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 export default function Register() {
   let [user, setUser] = useState({
     first_name: "",
@@ -17,7 +19,7 @@ export default function Register() {
   let [errorList, setErrorList] = useState([]);
   let navigator = useNavigate();
   let [loadinState, setLoadinState] = useState(false);
-  
+
   function addUser(e) {
     let myUser = { ...user };
     myUser[e.target.name] = e.target.value;
@@ -29,23 +31,16 @@ export default function Register() {
     let valid = validatData();
     if (valid.error == null) {
       setLoadinState(true);
-      let { data } = await axios.post(
-        "https://sticky-note-fe.vercel.app/signup",
-        user
-      );
+      createUserWithEmailAndPassword(auth, user.email, user.password)
+        .then((res) => res && navigator("/login"))
+        .catch((err) => {
+          return setApiError(err.message.split(" ").splice(2, 1));
+        });
       setLoadinState(false);
-
-      if (data.message === "success") {
-        navigator("/login");
-      } else {
-        setApiError(data.message);
-      }
     } else {
       setErrorList(valid.error.details);
-      ;
     }
   }
-
 
   function validatData() {
     let schema = joi.object({
@@ -59,7 +54,11 @@ export default function Register() {
       password: joi
         .string()
         .required()
-        .pattern(new RegExp(/^[A-Z][a-z]{3,9}[0-9]?$/)),
+        .pattern(new RegExp(/^[A-Z][a-z]{3,9}[0-9]?$/))
+        .message({
+          "string.pattern.base":
+            "Password should have a minimum length of 4 characters, first letter must be capital and At least 1 numeric character ,{firstName}",
+        }),
     });
     return schema.validate(user, { abortEarly: false });
   }
@@ -82,16 +81,25 @@ export default function Register() {
                   name="first_name"
                   placeholder="first name"
                 />
-              {errorList.map((e) => e.context.label === "first_name") ? (
+                {errorList.map((e) => e.context.label === "first_name") ? (
                   <div>
-                    {
-                      errorList.filter(
-                        (error) => error.context.label === "first_name"
-                      )[0]?.message ? <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">{errorList.filter(
-                        (error) => error.context.label === "first_name"
-                      )[0]?.message}</div> : ''
-                    }
-                  </div>): ("")}
+                    {errorList.filter(
+                      (error) => error.context.label === "first_name"
+                    )[0]?.message ? (
+                      <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">
+                        {
+                          errorList.filter(
+                            (error) => error.context.label === "first_name"
+                          )[0]?.message
+                        }
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="col-6">
                 <input
@@ -104,14 +112,23 @@ export default function Register() {
                 />
                 {errorList.map((e) => e.context.label === "last_name") ? (
                   <div>
-                  {
-                    errorList.filter(
+                    {errorList.filter(
                       (error) => error.context.label === "last_name"
-                    )[0]?.message ? <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">{errorList.filter(
-                      (error) => error.context.label === "last_name"
-                    )[0]?.message}</div> : ''
-                  }
-                </div>): ("")}
+                    )[0]?.message ? (
+                      <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">
+                        {
+                          errorList.filter(
+                            (error) => error.context.label === "last_name"
+                          )[0]?.message
+                        }
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="col-12">
                 <input
@@ -124,14 +141,23 @@ export default function Register() {
                 />
                 {errorList.map((e) => e.context.label === "email") ? (
                   <div>
-                  {
-                    errorList.filter(
+                    {errorList.filter(
                       (error) => error.context.label === "email"
-                    )[0]?.message ? <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">{errorList.filter(
-                      (error) => error.context.label === "email"
-                    )[0]?.message}</div> : ''
-                  }
-                </div>): ("")}
+                    )[0]?.message ? (
+                      <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">
+                        {
+                          errorList.filter(
+                            (error) => error.context.label === "email"
+                          )[0]?.message
+                        }
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="col-12">
                 <input
@@ -144,14 +170,23 @@ export default function Register() {
                 />
                 {errorList.map((e) => e.context.label === "age") ? (
                   <div>
-                  {
-                    errorList.filter(
+                    {errorList.filter(
                       (error) => error.context.label === "age"
-                    )[0]?.message ? <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">{errorList.filter(
-                      (error) => error.context.label === "age"
-                    )[0]?.message}</div> : ''
-                  }
-                </div>): ("")}
+                    )[0]?.message ? (
+                      <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">
+                        {
+                          errorList.filter(
+                            (error) => error.context.label === "age"
+                          )[0]?.message
+                        }
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="col-12">
                 <input
@@ -162,21 +197,33 @@ export default function Register() {
                   name="password"
                   placeholder="password"
                 />
-                {errorList.map((e) => e.context.label === "password" && e.message !== "") ? (
+                {errorList.map(
+                  (e) => e.context.label === "password" && e.message !== ""
+                ) ? (
                   <div>
-                  {
-                    errorList.filter(
+                    {errorList.filter(
                       (error) => error.context.label === "password"
-                    )[0]?.message ? <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">{errorList.filter(
-                      (error) => error.context.label === "password"
-                    )[0]?.message}</div> : ''
-                  }
-                </div>): ("")}
+                    )[0]?.message ? (
+                      <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">
+                        {
+                          errorList.filter(
+                            (error) => error.context.label === "password"
+                          )[0]?.message
+                        }
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
 
-
               {apiError != "" ? (
-                <div className="alert alert-danger mt-1 mb-0 text-center">{apiError}</div>
+                <div className="alert alert-danger mt-1 mb-0 text-center">
+                  {apiError}
+                </div>
               ) : (
                 ""
               )}
@@ -204,12 +251,12 @@ export default function Register() {
               </p>
               <hr />
             </form>
-              <p className="membership">
-                Already a member?{" "}
-                <Link to="/login" className="login-link">
-                  log in>
-                </Link>
-              </p>
+            <p className="membership">
+              Already a member?{" "}
+              <Link to="/login" className="login-link">
+                log in
+              </Link>
+            </p>
           </div>
         </div>
       </div>

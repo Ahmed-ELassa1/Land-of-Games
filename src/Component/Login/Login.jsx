@@ -5,13 +5,16 @@ import "./login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import navImage from "../../images/logo.png";
-
-export default function Login({saveUser}) {
+import { auth } from "../Conf/Firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import joi from "joi";
+export default function Login({ saveUser }) {
   let [user, setUser] = useState({
     email: "",
     password: "",
   });
   let [apiError, setApiError] = useState("");
+  let [errorList, setErrorList] = useState([]);
   let navigator = useNavigate();
   let [loadinState, setLoadinState] = useState(false);
   function addUser(e) {
@@ -22,23 +25,47 @@ export default function Login({saveUser}) {
   function forgetPassword() {
     alert("make new account ");
   }
+  function validatData() {
+    let schema = joi.object({
+      email: joi
+        .string()
+        .required()
+        .email({ tlds: { allow: ["com", "net"] } }),
+      password: joi
+        .string()
+        .required()
+        .pattern(new RegExp(/^[A-Z][a-z]{3,9}[0-9]?$/))
+        .message({
+          "string.pattern.base":
+            "Password should have a minimum length of 4 characters, first letter must be capital and At least 1 numeric character ,{firstName}",
+        }),
+    });
+    return schema.validate(user, { abortEarly: false });
+  }
+
   async function submitForm(e) {
     e.preventDefault();
+    let valid = validatData();
+    if (valid.error == null || undefined) {
       setLoadinState(true);
-      let { data } = await axios.post(
-        "https://sticky-note-fe.vercel.app/signin",
-        user
-      );
+      signInWithEmailAndPassword(auth, user.email, user.password)
+        .then((res) => {
+          setUser((user.email = res._tokenResponse));
+          navigator("/home");
+          localStorage.setItem(
+            "token",
+            JSON.stringify(res._tokenResponse.idToken)
+          );
+          saveUser();
+        })
+        .catch((err) => {
+          return setApiError(err?.message?.split("/")?.[1]?.split(")")?.[0]);
+        });
+
       setLoadinState(false);
-
-      if (data.message === "success") {
-        navigator("/home");
-        localStorage.setItem("token",data.token)
-        saveUser()
-      } else {
-        setApiError(data.message);
-      }
-
+    } else {
+      setErrorList(valid.error.details);
+    }
   }
 
   return (
@@ -64,6 +91,25 @@ export default function Login({saveUser}) {
                   name="email"
                   placeholder="email"
                 />
+                {errorList.map((e) => e.context.label === "email") ? (
+                  <div>
+                    {errorList.filter(
+                      (error) => error.context.label === "email"
+                    )[0]?.message ? (
+                      <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">
+                        {
+                          errorList.filter(
+                            (error) => error.context.label === "email"
+                          )[0]?.message
+                        }
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="col-10">
                 <input
@@ -74,6 +120,27 @@ export default function Login({saveUser}) {
                   name="password"
                   placeholder="password"
                 />
+                {errorList.map(
+                  (e) => e.context.label === "password" && e.message !== ""
+                ) ? (
+                  <div>
+                    {errorList.filter(
+                      (error) => error.context.label === "password"
+                    )[0]?.message ? (
+                      <div className="w-100 py-1 px-2 mt-1 mb-0 alert alert-danger text-center">
+                        {
+                          errorList.filter(
+                            (error) => error.context.label === "password"
+                          )[0]?.message
+                        }
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
 
               {apiError !== "" ? (
