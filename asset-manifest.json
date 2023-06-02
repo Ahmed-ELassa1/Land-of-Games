@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/Land-of-Games/static/css/main.07cedff3.css",
+    "main.js": "/Land-of-Games/static/js/main.31dd574b.js",
+    "static/js/787.bd02f72e.chunk.js": "/Land-of-Games/static/js/787.bd02f72e.chunk.js",
+    "static/media/fa-solid-900.ttf": "/Land-of-Games/static/media/fa-solid-900.b1a653db79258eeccc5d.ttf",
+    "static/media/paladins.png": "/Land-of-Games/static/media/paladins.b44d33d6e7ee1ba8.0fddd1fbe0a5e0a0af93.png",
+    "static/media/gaming.jpg": "/Land-of-Games/static/media/gaming.ebaf2ffc84f4451d.d5751ff804c935b205d3.jpg",
+    "static/media/fa-brands-400.ttf": "/Land-of-Games/static/media/fa-brands-400.450a5c898f0b184b968b.ttf",
+    "static/media/logo.png": "/Land-of-Games/static/media/logo.548dc5719c2345c22eef.png",
+    "static/media/fa-solid-900.woff2": "/Land-of-Games/static/media/fa-solid-900.41c0f706d8ce93933771.woff2",
+    "static/media/fa-brands-400.woff2": "/Land-of-Games/static/media/fa-brands-400.3ac6859b28be946745f9.woff2",
+    "static/media/fa-regular-400.ttf": "/Land-of-Games/static/media/fa-regular-400.3cd9fb8fcec4ad0f99d4.ttf",
+    "static/media/fa-regular-400.woff2": "/Land-of-Games/static/media/fa-regular-400.1f3772178d9e5bed38a6.woff2",
+    "static/media/fa-v4compatibility.ttf": "/Land-of-Games/static/media/fa-v4compatibility.e314b618134d5be20996.ttf",
+    "static/media/fa-v4compatibility.woff2": "/Land-of-Games/static/media/fa-v4compatibility.4ee7f902d88f819e251c.woff2",
+    "index.html": "/Land-of-Games/index.html",
+    "main.07cedff3.css.map": "/Land-of-Games/static/css/main.07cedff3.css.map",
+    "main.31dd574b.js.map": "/Land-of-Games/static/js/main.31dd574b.js.map",
+    "787.bd02f72e.chunk.js.map": "/Land-of-Games/static/js/787.bd02f72e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.07cedff3.css",
+    "static/js/main.31dd574b.js"
+  ]
+}
